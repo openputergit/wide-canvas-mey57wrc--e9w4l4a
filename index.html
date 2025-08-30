@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EdQuiz - Challenge Your Brain</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+        .neubrutalism {
+            border: 3px solid black;
+            box-shadow: 5px 5px 0px black;
+        }
+        .screen {
+            display: none;
+        }
+        .screen.active {
+            display: flex;
+        }
+        .option.correct {
+            background-color: #8fc983;
+        }
+        .option.incorrect {
+            background-color: #ff6b6b;
+        }
+    </style>
+</head>
+<body class="bg-[#8bcaea] min-h-screen">
+    <!-- Landing Page -->
+    <div id="landing" class="screen active flex-col items-center justify-center min-h-screen p-4">
+        <img src="https://firebasestorage.googleapis.com/v0/b/widecanvas-d0dd4.appspot.com/o/logos%2FEdQuiz.png?alt=media&token=92fda5e7-a86a-421c-a411-7a177aeb4728" alt="EdQuiz Logo" class="w-40 mb-8">
+        <h1 class="text-3xl font-bold mb-2 text-center">Welcome to EdQuiz!</h1>
+        <p class="text-xl mb-8 text-center">Challenge your brain, anytime, anywhere</p>
+        <button onclick="showScreen('login')" class="neubrutalism bg-[#8fc983] px-8 py-3 text-lg font-bold hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all">Get Started</button>
+    </div>
+
+    <!-- Login Screen -->
+    <div id="login" class="screen flex-col items-center justify-center min-h-screen p-4">
+        <button onclick="showScreen('landing')" class="absolute top-4 left-4 neubrutalism bg-white p-2"><i class="bi bi-arrow-left text-xl"></i></button>
+        <div class="w-full max-w-md">
+            <h2 class="text-2xl font-bold mb-6 text-center">Login</h2>
+            <input type="tel" placeholder="Enter Mobile Number" class="neubrutalism w-full p-3 mb-4 bg-white" maxlength="10">
+            <button onclick="generateOTP()" class="neubrutalism w-full bg-[#8fc983] py-3 font-bold hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all">Send OTP</button>
+        </div>
+    </div>
+
+    <!-- OTP Verification -->
+    <div id="otp" class="screen flex-col items-center justify-center min-h-screen p-4">
+        <button onclick="showScreen('login')" class="absolute top-4 left-4 neubrutalism bg-white p-2"><i class="bi bi-arrow-left text-xl"></i></button>
+        <div class="w-full max-w-md">
+            <h2 class="text-2xl font-bold mb-6 text-center">Enter OTP</h2>
+            <input type="text" placeholder="Enter OTP" class="neubrutalism w-full p-3 mb-4 bg-white" maxlength="6">
+            <button onclick="verifyOTP()" class="neubrutalism w-full bg-[#8fc983] py-3 font-bold hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all">Verify OTP</button>
+        </div>
+    </div>
+
+    <!-- Home Screen -->
+    <div id="home" class="screen flex-col min-h-screen p-4">
+        <div class="flex-1">
+            <h2 class="text-2xl font-bold mb-8 text-center">Choose Your Mode</h2>
+            <div class="flex flex-col gap-4 max-w-md mx-auto">
+                <button onclick="showScreen('startQuiz')" class="neubrutalism bg-[#8fc983] py-4 font-bold hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all">Start Quiz</button>
+                <button onclick="showScreen('hostQuiz')" class="neubrutalism bg-[#8fc983] py-4 font-bold hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all">Host Quiz</button>
+            </div>
+        </div>
+        <!-- Bottom Navigation -->
+        <div class="fixed bottom-0 left-0 right-0 bg-white neubrutalism flex justify-around py-3">
+            <button onclick="showScreen('leaderboard')" class="text-2xl"><i class="bi bi-trophy"></i></button>
+            <button onclick="showScreen('home')" class="text-2xl"><i class="bi bi-house"></i></button>
+            <button onclick="showScreen('profile')" class="text-2xl"><i class="bi bi-person"></i></button>
+        </div>
+    </div>
+
+    <!-- Additional screens (Start Quiz, Host Quiz, etc.) would follow the same pattern -->
+
+    <script>
+        function showScreen(screenId) {
+            document.querySelectorAll('.screen').forEach(screen => {
+                screen.classList.remove('active');
+            });
+            document.getElementById(screenId).classList.add('active');
+        }
+
+        function generateOTP() {
+            // Simulate OTP generation
+            alert('OTP sent to your mobile number!');
+            showScreen('otp');
+        }
+
+        function verifyOTP() {
+            // Simulate OTP verification
+            alert('OTP verified successfully!');
+            showScreen('home');
+        }
+    </script>
+<script>document.body.addEventListener('wheel', e => { if (!e.ctrlKey) return; e.preventDefault(); return }, { passive: false })</script>
+	</body>
+</html>
